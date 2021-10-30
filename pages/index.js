@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import Head from "next/head";
-import TableRow from "../components/TableRow";
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import TableRow from '../components/TableRow';
 import {
   Heading,
   Flex,
@@ -12,35 +12,36 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
-} from "@chakra-ui/core";
+} from '@chakra-ui/core';
 export default function Home() {
   const initialFormData = Object.freeze({
-    firstName: "",
-    lastName: "",
-    streetAddress: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    phoneNumber: "",
-    cardType: "",
+    firstName: '',
+    lastName: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    phoneNumber: '',
+    cardType: '',
     cardNumber: null,
   });
 
   const [data, setData] = useState([]);
   const [formData, updateFormData] = useState({});
   const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data: formData }),
   };
   async function getData() {
-    const res = await fetch("/api/getCustomers", { cache: "no-store" });
+    const res = await fetch('/api/getCustomers', { cache: 'no-store' });
     const newData = await res.json();
+    console.log(newData);
     setData(newData);
   }
 
   async function addCustomer() {
-    await fetch("/api/newCustomer", requestOptions)
+    await fetch('/api/newCustomer', requestOptions)
       .then(() => getData())
       .catch((e) => console.log(e));
   }
@@ -66,21 +67,21 @@ export default function Home() {
       <Head>
         <title>Next.js, FaunaDB and Node.js</title>
       </Head>
-      <Heading as="h1" my={2} textAlign="center">
+      <Heading as='h1' my={2} textAlign='center'>
         Next.js, FaunaDB and Node.js
       </Heading>
-      <Heading as="h2" my={2} textAlign="center">
+      <Heading as='h2' my={2} textAlign='center'>
         Customer Data
       </Heading>
-      <Flex mt={12} align="center" justify="center">
+      <Flex mt={12} align='center' justify='center'>
         <Stack>
-          <Heading mb={6} as="h4">
+          <Heading mb={6} as='h4'>
             Name:
           </Heading>
-          <Heading mt={6} as="h4">
+          <Heading mt={6} as='h4'>
             Phone:
           </Heading>
-          <Heading my={4} as="h4">
+          <Heading my={4} as='h4'>
             Credit Card:
           </Heading>
         </Stack>
@@ -102,117 +103,117 @@ export default function Home() {
           </>
         )}
       </Flex>
-      <Heading as="h4" mt={6} textAlign="center">
+      <Heading as='h4' mt={6} textAlign='center'>
         Add a new customer
       </Heading>
-      <Flex mt={12} align="center" justify="center">
-        <form onSubmit={handleSubmit} method="post">
+      <Flex mt={12} align='center' justify='center'>
+        <form onSubmit={handleSubmit} method='post'>
           <FormControl onChange={handleChange}>
-            <FormLabel htmlFor="firstName">First Name</FormLabel>
+            <FormLabel htmlFor='firstName'>First Name</FormLabel>
             <Input
-              type="text"
-              name="firstName"
-              id="firstName"
+              type='text'
+              name='firstName'
+              id='firstName'
               onChange={handleChange}
-              aria-describedby="first-name-helper-text"
+              aria-describedby='first-name-helper-text'
             />
-            <FormLabel htmlFor="lastName">Last Name</FormLabel>
+            <FormLabel htmlFor='lastName'>Last Name</FormLabel>
             <Input
-              type="text"
-              id="lastName"
-              name="lastName"
+              type='text'
+              id='lastName'
+              name='lastName'
               onChange={handleChange}
-              aria-describedby="last-name-helper-text"
+              aria-describedby='last-name-helper-text'
             />
-            <FormLabel htmlFor="streetAddress">Street Address</FormLabel>
+            <FormLabel htmlFor='streetAddress'>Street Address</FormLabel>
             <Input
-              type="text"
-              id="streetAddress"
-              name="streetAddress"
+              type='text'
+              id='streetAddress'
+              name='streetAddress'
               onChange={handleChange}
-              aria-describedby="street-address-helper-text"
+              aria-describedby='street-address-helper-text'
             />
             <Stack isInline mt={2}>
-              <FormLabel mt={2} htmlFor="city">
+              <FormLabel mt={2} htmlFor='city'>
                 City
               </FormLabel>
               <Input
-                type="text"
-                id="city"
-                name="city"
+                type='text'
+                id='city'
+                name='city'
                 onChange={handleChange}
-                aria-describedby="city-helper-text"
+                aria-describedby='city-helper-text'
               />
-              <FormLabel mt={2} htmlFor="state">
+              <FormLabel mt={2} htmlFor='state'>
                 State
               </FormLabel>
               <Input
-                type="text"
-                id="state"
-                name="state"
+                type='text'
+                id='state'
+                name='state'
                 onChange={handleChange}
-                aria-describedby="state-helper-text"
+                aria-describedby='state-helper-text'
               />
-              <FormLabel htmlFor="zipcode">Zip Code</FormLabel>
+              <FormLabel htmlFor='zipcode'>Zip Code</FormLabel>
               <Input
-                type="text"
-                name="zipcode"
-                id="zipcode"
+                type='text'
+                name='zipcode'
+                id='zipcode'
                 onChange={handleChange}
-                aria-describedby="zipcode-helper-text"
+                aria-describedby='zipcode-helper-text'
               />
             </Stack>
-            <FormLabel htmlFor="phoneNumber">Phone Number</FormLabel>
+            <FormLabel htmlFor='phoneNumber'>Phone Number</FormLabel>
             <Input
-              type="text"
-              name="phoneNumber"
-              id="phoneNumber"
+              type='text'
+              name='phoneNumber'
+              id='phoneNumber'
               onChange={handleChange}
-              aria-describedby="phoneNumber-helper-text"
+              aria-describedby='phoneNumber-helper-text'
             />
-            <RadioGroup name="cardType" my={4} spacing={8} isInline>
+            <RadioGroup name='cardType' my={4} spacing={8} isInline>
               <Radio
                 onChange={handleChange}
-                name="Visa"
-                value="Visa"
-                label="Visa"
+                name='Visa'
+                value='Visa'
+                label='Visa'
               >
                 Visa
               </Radio>
               <Radio
                 onChange={handleChange}
-                name="MasterCard"
-                label="MasterCard"
-                value="MasterCard"
+                name='MasterCard'
+                label='MasterCard'
+                value='MasterCard'
               >
                 MasterCard
               </Radio>
               <Radio
                 onChange={handleChange}
-                name="Amex"
-                value="Amex"
-                label="Amex"
+                name='Amex'
+                value='Amex'
+                label='Amex'
               >
                 American Express
               </Radio>
             </RadioGroup>
-            <FormLabel htmlFor="cardNumber">Card Number</FormLabel>
+            <FormLabel htmlFor='cardNumber'>Card Number</FormLabel>
             <Input
-              type="number"
-              name="cardNumber"
-              id="cardNumber"
+              type='number'
+              name='cardNumber'
+              id='cardNumber'
               onChange={handleChange}
-              aria-describedby="cardNumber-helper-text"
+              aria-describedby='cardNumber-helper-text'
             />
             <Button
-              type="submit"
+              type='submit'
               my={8}
-              ml="20%"
-              width="50%"
-              size="md"
-              height="48px"
-              border="2px"
-              borderColor="green.500"
+              ml='20%'
+              width='50%'
+              size='md'
+              height='48px'
+              border='2px'
+              borderColor='green.500'
             >
               Add Customer
             </Button>
