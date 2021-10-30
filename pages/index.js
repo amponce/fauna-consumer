@@ -36,7 +36,6 @@ export default function Home() {
   async function getData() {
     const res = await fetch('/api/getCustomers', { cache: 'no-store' });
     const newData = await res.json();
-    console.log(newData);
     setData(newData);
   }
 
@@ -65,7 +64,7 @@ export default function Home() {
   return (
     <main>
       <Head>
-        <title>Next.js, FaunaDB and Node.js</title>
+        <title>Testing</title>
       </Head>
       <Heading as='h1' my={2} textAlign='center'>
         Next.js, FaunaDB and Node.js
